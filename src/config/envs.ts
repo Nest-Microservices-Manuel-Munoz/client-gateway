@@ -7,6 +7,7 @@ interface EnvVars {
   PRODUCTS_MICRO_SERVICE_PORT: number;
   ORDERS_MICRO_SERVICE_HOST: string;
   ORDERS_MICRO_SERVICE_PORT: number;
+  NATS_SERVERS: string[];
 }
 
 const envVarsSchema = joi
@@ -16,10 +17,16 @@ const envVarsSchema = joi
     PRODUCTS_MICRO_SERVICE_PORT: joi.number().required(),
     ORDERS_MICRO_SERVICE_HOST: joi.string().required(),
     ORDERS_MICRO_SERVICE_PORT: joi.number().required(),
+    NATS_SERVERS: joi.array().items(joi.string()).required(),
   })
   .unknown(true);
 
-const validationResult = envVarsSchema.validate(process.env);
+const validationResult = envVarsSchema.validate({
+  ...process.env,
+  NATS_SERVERS: process.env.NATS_SERVERS
+    ? process.env.NATS_SERVERS.split(',')
+    : [],
+});
 const error = validationResult.error;
 const value = validationResult.value as EnvVars;
 
@@ -35,4 +42,5 @@ export const envs = {
   productsMicroServicePort: envVars.PRODUCTS_MICRO_SERVICE_PORT,
   ordersMicroServiceHost: envVars.ORDERS_MICRO_SERVICE_HOST,
   ordersMicroServicePort: envVars.ORDERS_MICRO_SERVICE_PORT,
+  natsServers: envVars.NATS_SERVERS,
 };
