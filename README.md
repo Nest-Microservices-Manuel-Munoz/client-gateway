@@ -1,18 +1,18 @@
-## Cliente Gateway
-El gateway es el punto de comunicación entre nuestros clientes y nuestros servicios. Es el encargado de recibir las peticiones, enviarlas a los servicios correspondientes y devolver la respuesta al cliente.
+## Client Gateway
+The gateway is the communication point between our clients and our services. It is responsible for receiving requests, sending them to the corresponding services, and returning the response to the client.
 
 
 ## Dev
 
-1. Clonar el repositorio
-2. Instalar dependencias
-3. Crear un archivo `.env` basado en el `env.template`
-4. Levantar el servidor de NATS
+1. Clone the repository
+2. Install dependencies
+3. Create a `.env` file based on the `env.template`
+4. Start the NATS server
 ```
 docker run -d --name nats-server -p 4222:4222 -p 8222:8222 nats
 ```
-5. Tener levantados los microservicios  que se van a consumir
-6. Levantar proyecto con `npm run start:dev`
+5. Have the microservices that will be consumed up and running
+6. Start the project with `npm run start:dev`
 
 
 

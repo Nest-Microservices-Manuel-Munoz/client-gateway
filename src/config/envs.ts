@@ -3,20 +3,12 @@ import * as joi from 'joi';
 
 interface EnvVars {
   PORT: number;
-  PRODUCTS_MICRO_SERVICE_HOST: string;
-  PRODUCTS_MICRO_SERVICE_PORT: number;
-  ORDERS_MICRO_SERVICE_HOST: string;
-  ORDERS_MICRO_SERVICE_PORT: number;
   NATS_SERVERS: string[];
 }
 
 const envVarsSchema = joi
   .object({
     PORT: joi.number().required(),
-    PRODUCTS_MICRO_SERVICE_HOST: joi.string().required(),
-    PRODUCTS_MICRO_SERVICE_PORT: joi.number().required(),
-    ORDERS_MICRO_SERVICE_HOST: joi.string().required(),
-    ORDERS_MICRO_SERVICE_PORT: joi.number().required(),
     NATS_SERVERS: joi.array().items(joi.string()).required(),
   })
   .unknown(true);
@@ -38,9 +30,5 @@ const envVars: EnvVars = value;
 
 export const envs = {
   port: envVars.PORT,
-  productsMicroServiceHost: envVars.PRODUCTS_MICRO_SERVICE_HOST,
-  productsMicroServicePort: envVars.PRODUCTS_MICRO_SERVICE_PORT,
-  ordersMicroServiceHost: envVars.ORDERS_MICRO_SERVICE_HOST,
-  ordersMicroServicePort: envVars.ORDERS_MICRO_SERVICE_PORT,
   natsServers: envVars.NATS_SERVERS,
 };
