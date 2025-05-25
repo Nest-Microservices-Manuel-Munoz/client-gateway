@@ -1,4 +1,4 @@
-## Client Gateway
+## Client Gateway - with NATS
 The gateway is the communication point between our clients and our services. It is responsible for receiving requests, sending them to the corresponding services, and returning the response to the client.
 
 
